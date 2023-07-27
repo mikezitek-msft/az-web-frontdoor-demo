@@ -1,0 +1,30 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Home page";
+    var region = Environment.GetEnvironmentVariable("REGION_NAME");
+    var image = "earth.png";
+
+    if (region == null) region = "";
+
+    if (region.ToLower().Contains("west"))
+    {
+        image = "west.png";
+    }
+    else if (region.ToLower().Contains("east"))
+    {
+        image = "east.jpg";
+    }
+    else
+    {
+        region = "the unknown";
+        image = "earth.png";
+    }
+}
+
+<div class="text-center">
+    <h1 class="display-4">Hello from @Html.Raw(region)</h1>
+
+    [@Html.Raw(Environment.GetEnvironmentVariable("REGION_NAME"))]<br />
+    <img src="~/images/@image" width="400" />
+</div>
